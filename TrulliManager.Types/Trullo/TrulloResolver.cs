@@ -2,6 +2,7 @@
 using HotChocolate.Resolvers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TrulliManager.Repository.Abstract;
 using modelsdb = TrulliManager.Database.Models;
@@ -17,9 +18,9 @@ namespace TrulliManager.Types.Trullo
             _trulloRepository = trulloRepository;
         }
 
-        public IEnumerable<modelsdb.Trullo> GetTrullos(modelsdb.Property property, IResolverContext ctx )
+        public IEnumerable<modelsdb.Trullo> GetTrullos(modelsdb.Property property)
         {
-            return _trulloRepository.GetAllForProperty(property.Id);
+            return _trulloRepository.GetAll().Where(t => t.PropertyId == property.Id);
         }
     }
 }

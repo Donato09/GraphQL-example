@@ -21,10 +21,8 @@ namespace TrulliManager
             _trulloRepository = trulloRepository;
         }
 
-        [UsePaging(SchemaType = typeof(PropertyType))]
-        public IEnumerable<Property> Properties => _propertyRepository.GetAll();
+        public IQueryable<Property> Properties => _propertyRepository.GetAll();
 
-        [UsePaging(SchemaType = typeof(TrulloType))]
-        public IEnumerable<Trullo> Trulli => _trulloRepository.GetAll();
+        public IQueryable<Trullo> Trulli => _trulloRepository.GetAll();
     }
 }

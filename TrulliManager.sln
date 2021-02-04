@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrulliManager", "TrulliManager\TrulliManager.csproj", "{54D4150F-27C5-4CB7-A8A2-4E0819C91FF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrulliManager", "TrulliManager\TrulliManager.csproj", "{54D4150F-27C5-4CB7-A8A2-4E0819C91FF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrulliManager.Repository", "Trulli.Repository\TrulliManager.Repository.csproj", "{EEC42A0B-1865-421B-A193-A4416A758223}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrulliManager.Repository", "Trulli.Repository\TrulliManager.Repository.csproj", "{EEC42A0B-1865-421B-A193-A4416A758223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrulliManager.Database", "TrulliManager.Database\TrulliManager.Database.csproj", "{BDFEFD2C-02BA-4E1B-8505-CD20FE24D8F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrulliManager.Database", "TrulliManager.Database\TrulliManager.Database.csproj", "{BDFEFD2C-02BA-4E1B-8505-CD20FE24D8F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrulliManager.Types", "TrulliManager.Types\TrulliManager.Types.csproj", "{DDF2DCA5-4337-4D43-A31A-CA08CB3BD3F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrulliManager.Helpers", "TrulliManager.Helpers\TrulliManager.Helpers.csproj", "{27B62F61-AEE6-41B5-8BC1-2C2B19841E6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrulliManager.Types", "TrulliManager.Types\TrulliManager.Types.csproj", "{DDF2DCA5-4337-4D43-A31A-CA08CB3BD3F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{DDF2DCA5-4337-4D43-A31A-CA08CB3BD3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDF2DCA5-4337-4D43-A31A-CA08CB3BD3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDF2DCA5-4337-4D43-A31A-CA08CB3BD3F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27B62F61-AEE6-41B5-8BC1-2C2B19841E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27B62F61-AEE6-41B5-8BC1-2C2B19841E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27B62F61-AEE6-41B5-8BC1-2C2B19841E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27B62F61-AEE6-41B5-8BC1-2C2B19841E6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

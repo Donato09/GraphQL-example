@@ -1,4 +1,5 @@
 ﻿using HotChocolate.Types;
+using TrulliManager.Types.Trullo;
 
 namespace TrulliManager.Types.Property
 {
@@ -12,7 +13,7 @@ namespace TrulliManager.Types.Property
             descriptor.Field(a => a.Street).Type<StringType>();
             descriptor.Field(a => a.Spa).Type<BooleanType>();
             descriptor.Field(a => a.SwimmingPool).Type<BooleanType>();
-            //descriptor.Field<BookResolver>(t => t.GetBooks(default, default));
+            descriptor.Field<TrulloResolver>(t => t.GetTrullos(default));
         }
     }
 }

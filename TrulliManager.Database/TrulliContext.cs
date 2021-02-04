@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TrulliManager.Database.Models;
 
 namespace TrulliManager.Database
 {
@@ -10,11 +11,19 @@ namespace TrulliManager.Database
         public TrulliContext( DbContextOptions<TrulliContext> options)
             : base(options)
         {
-
         }
 
-        public DbSet<Models.Property> Properties { get; set; }
-        public DbSet<Models.Trullo> Trulli { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<Trullo> Trulli { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Trullo>();
+
+            modelBuilder.Entity<Property>()
+                .HasMany(t => t.Trulli)
+                .WithOne(t => t.Property);
+        }
 
     }
 }

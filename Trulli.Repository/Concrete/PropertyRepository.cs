@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using TrulliManager.Database;
 using TrulliManager.Database.Models;
@@ -15,7 +16,7 @@ namespace TrulliManager.Repository.Concrete
             _db = db;
         }
 
-        public IEnumerable<Property> GetAll()
+        public IQueryable<Property> GetAll()
         {
             return _db.Properties;
         }
@@ -25,7 +26,7 @@ namespace TrulliManager.Repository.Concrete
             return _db.Properties.SingleOrDefault(x => x.Id == id);
         }
 
-        public Property Add(Property property)
+        public Property Create(Property property)
         {
             _db.Properties.Add(property);
             _db.SaveChanges();

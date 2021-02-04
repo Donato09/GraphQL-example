@@ -28,8 +28,16 @@ namespace TrulliManager
         {
             services.AddDbContext<TrulliContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TrulliContext")));
 
+            //services.AddSingleton<IPropertyRepository, PropertyRepository>();
+            //services.AddSingleton<ITrulloRepository, TrulloRepository>();
+
+            //register the repository and context
             services.AddTransient<IPropertyRepository, PropertyRepository>();
             services.AddTransient<ITrulloRepository, TrulloRepository>();
+            services.AddTransient(typeof(DbContext), typeof(TrulliContext));
+
+            services.AddScoped<IPropertyRepository, PropertyRepository>();
+            services.AddScoped<ITrulloRepository, TrulloRepository>();
 
             services.AddScoped<TrulliContext>();
             services.AddScoped<TrulloType>();
@@ -37,13 +45,11 @@ namespace TrulliManager
             services.AddScoped<Query>();
             services.AddScoped<Mutation>();
 
-            services.AddGraphQL(s => SchemaBuilder.New()
-                .AddServices(s)
-                .AddType<PropertyType>()
-                .AddType<TrulloType>()
-                .AddQueryType<Query>()
-                .AddMutationType<Mutation>()
-                .Create());
+            services
+                .AddRouting()
+                .AddGraphQLServer()
+                .AddQueryType<QueryType>()
+                .AddMutationType<Mutation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +63,10 @@ namespace TrulliManager
             app.UseRouting();
 
             // routing area
-            app.UseEndpoints(x => x.MapGraphQL());
+            app.UseEndpoints(endpoints => 
+            {
+                endpoints.MapGraphQL();
+            });
 
             //preload db
             db.EnsureSeedData();

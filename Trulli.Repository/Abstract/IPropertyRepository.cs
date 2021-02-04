@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TrulliManager.Database.Models;
 
@@ -7,8 +8,8 @@ namespace TrulliManager.Repository.Abstract
 {
     public interface IPropertyRepository
     {
-        IEnumerable<Property> GetAll();
+        IQueryable<Property> GetAll();
         Property GetById(int id);
-        Property Add(Property property);
+        Property Create(Property property);
     }
 }

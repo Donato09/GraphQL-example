@@ -10,10 +10,12 @@ namespace TrulliManager
     public class Mutation
     {
         private readonly ITrulloRepository _trulloRepository;
+        private readonly IPropertyRepository _propertyRepository;
 
-        public Mutation(ITrulloRepository trulloRepository)
+        public Mutation(ITrulloRepository trulloRepository, IPropertyRepository propertyRepository)
         {
             _trulloRepository = trulloRepository;
+            _propertyRepository = propertyRepository;
         }
 
         public Trullo CreateTrullo(Trullo trullo)
@@ -24,6 +26,11 @@ namespace TrulliManager
         public Trullo DeleteTrullo(Trullo trullo)
         {
             return _trulloRepository.Delete(trullo);
+        }
+
+        public Property CreateProperty(Property property)
+        {
+            return _propertyRepository.Create(property);
         }
     }
 }
