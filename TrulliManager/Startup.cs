@@ -28,13 +28,10 @@ namespace TrulliManager
         {
             services.AddDbContext<TrulliContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TrulliContext")));
 
-            //services.AddSingleton<IPropertyRepository, PropertyRepository>();
-            //services.AddSingleton<ITrulloRepository, TrulloRepository>();
-
             //register the repository and context
+            services.AddTransient(typeof(DbContext), typeof(TrulliContext));
             services.AddTransient<IPropertyRepository, PropertyRepository>();
             services.AddTransient<ITrulloRepository, TrulloRepository>();
-            services.AddTransient(typeof(DbContext), typeof(TrulliContext));
 
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<ITrulloRepository, TrulloRepository>();
@@ -60,6 +57,9 @@ namespace TrulliManager
                 app.UsePlayground();
             }
 
+            //preload db
+            db.EnsureSeedData();
+
             app.UseRouting();
 
             // routing area
@@ -67,9 +67,6 @@ namespace TrulliManager
             {
                 endpoints.MapGraphQL();
             });
-
-            //preload db
-            db.EnsureSeedData();
         }
     }
 }

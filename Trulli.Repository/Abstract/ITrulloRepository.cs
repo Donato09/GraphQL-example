@@ -9,8 +9,6 @@ namespace TrulliManager.Repository.Abstract
     public interface ITrulloRepository
     {
         IQueryable<Trullo> GetAll();
-        //IEnumerable<Trullo> GetAllForProperty(int propertyId);
-        //IEnumerable<Trullo> GetAllForProperty(int propertyId, int capacity);
         Trullo Delete(Trullo trullo);
         Trullo Create(Trullo trullo);
     }

@@ -21,8 +21,10 @@ namespace TrulliManager
             _trulloRepository = trulloRepository;
         }
 
+        [UsePaging]
         public IQueryable<Property> Properties => _propertyRepository.GetAll();
 
+        [UsePaging]
         public IQueryable<Trullo> Trulli => _trulloRepository.GetAll();
     }
 }

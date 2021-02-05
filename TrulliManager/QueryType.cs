@@ -15,6 +15,7 @@ namespace TrulliManager
             descriptor
                 .Field(f => f.Properties)
                 .Type<PropertyType>();
+
             descriptor
                 .Field(f => f.Trulli)
                 .Type<TrulloType>();

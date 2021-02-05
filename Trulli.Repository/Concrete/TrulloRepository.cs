@@ -19,20 +19,8 @@ namespace TrulliManager.Repository.Concrete
 
         public IQueryable<Trullo> GetAll()
         {
-            return _db.Trulli.AsQueryable();
+            return _db.Trulli.Include(p => p.Property);
         }
-
-        //public IEnumerable<Trullo> GetAllForProperty(int propertyId)
-        //{
-        //    return _db.Trulli.Where(x => x.PropertyId == propertyId);
-        //}
-
-        //public IEnumerable<Trullo> GetAllForProperty(int propertyId, int capacity)
-        //{
-        //    return _db.Trulli.Include(x => x.Property).Where(x => x.PropertyId == propertyId)
-        //        .OrderByDescending(x => x.Capacity)
-        //        .Take(capacity);
-        //}
 
         public Trullo Delete(Trullo trullo)
         {

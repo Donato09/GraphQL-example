@@ -18,7 +18,7 @@ namespace TrulliManager.Repository.Concrete
 
         public IQueryable<Property> GetAll()
         {
-            return _db.Properties;
+            return _db.Properties.Include(t => t.Trulli);
         }
 
         public Property GetById(int id)
