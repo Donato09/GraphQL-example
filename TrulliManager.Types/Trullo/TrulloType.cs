@@ -11,7 +11,7 @@ namespace TrulliManager.Types.Trullo
             descriptor.Field(b => b.Name).Type<StringType>();
             descriptor.Field(b => b.Description).Type<StringType>();
             descriptor.Field(b => b.Price).Type<DecimalType>();
-            descriptor.Field<PropertyResolver>(t => t.GetProperty(default));
+            descriptor.Field<PropertyResolver>(t => t.GetProperty(default, default));
         }
     }
 }

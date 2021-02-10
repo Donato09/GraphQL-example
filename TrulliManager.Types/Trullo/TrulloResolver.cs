@@ -18,7 +18,7 @@ namespace TrulliManager.Types.Trullo
             _trulloRepository = trulloRepository;
         }
 
-        public IEnumerable<modelsdb.Trullo> GetTrullos(modelsdb.Property property)
+        public IEnumerable<modelsdb.Trullo> GetTrullos(modelsdb.Property property, IResolverContext ctx)
         {
             return _trulloRepository.GetAll().Where(t => t.PropertyId == property.Id);
         }

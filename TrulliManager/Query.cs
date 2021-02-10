@@ -1,12 +1,8 @@
-﻿using HotChocolate.Types;
-using System;
-using System.Collections.Generic;
+﻿using HotChocolate.Data;
+using HotChocolate.Types;
 using System.Linq;
-using System.Threading.Tasks;
 using TrulliManager.Database.Models;
 using TrulliManager.Repository.Abstract;
-using TrulliManager.Types.Property;
-using TrulliManager.Types.Trullo;
 
 namespace TrulliManager
 {
@@ -22,9 +18,13 @@ namespace TrulliManager
         }
 
         [UsePaging]
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Property> Properties => _propertyRepository.GetAll();
 
         [UsePaging]
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Trullo> Trulli => _trulloRepository.GetAll();
     }
 }

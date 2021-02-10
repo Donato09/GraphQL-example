@@ -15,7 +15,7 @@ namespace TrulliManager.Types.Property
             _propertyRepository = propertyRepository;
         }
 
-        public modelsdb.Property GetProperty(modelsdb.Trullo trullo)
+        public modelsdb.Property GetProperty(modelsdb.Trullo trullo, IResolverContext ctx)
         {
             return _propertyRepository.GetAll().Where(a => a.Id == trullo.PropertyId).FirstOrDefault();
         }

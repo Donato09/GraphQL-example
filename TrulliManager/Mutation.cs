@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TrulliManager.Database.Models;
 using TrulliManager.Repository.Abstract;
+using TrulliManager.ViewModel;
 
 namespace TrulliManager
 {
@@ -18,19 +19,44 @@ namespace TrulliManager
             _propertyRepository = propertyRepository;
         }
 
-        public Trullo CreateTrullo(Trullo trullo)
+        public Trullo CreateTrullo(CreateTrulloInput trullo)
         {
-            return _trulloRepository.Create(trullo);
+            Trullo newTrullo = new Trullo
+            {
+                //Id = _trulloRepository.GetAll().Max(x => x.Id) + 1,
+                Name = trullo.Name,
+                Description = trullo.Description,
+                Capacity = trullo.Capacity,
+                Price = trullo.Price,
+                PropertyId = trullo.PropertyId
+            };
+
+            return _trulloRepository.Create(newTrullo);
         }
 
-        public Trullo DeleteTrullo(Trullo trullo)
+        public Trullo DeleteTrullo(DeleteTrulloInput deletedTrullo)
         {
-            return _trulloRepository.Delete(trullo);
+            Trullo oldTrullo = new Trullo
+            {
+                Id = deletedTrullo.Id
+            };
+
+            return _trulloRepository.Delete(oldTrullo);
         }
 
-        public Property CreateProperty(Property property)
+        public Property CreateProperty(CreatePropertyInput property)
         {
-            return _propertyRepository.Create(property);
+            Property newProperty = new Property
+            {
+                Id = _propertyRepository.GetAll().Max(x => x.Id) + 1,
+                Name = property.Name,
+                City = property.City,
+                Street = property.Street,
+                Spa = property.Spa,
+                SwimmingPool = property.SwimmingPool
+            };
+
+            return _propertyRepository.Create(newProperty);
         }
     }
 }
