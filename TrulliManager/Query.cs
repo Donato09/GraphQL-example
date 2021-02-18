@@ -1,6 +1,9 @@
-﻿using HotChocolate.Data;
+﻿using HotChocolate;
+using HotChocolate.Data;
+using HotChocolate.Subscriptions;
 using HotChocolate.Types;
 using System.Linq;
+using System.Threading.Tasks;
 using TrulliManager.Database.Models;
 using TrulliManager.Repository.Abstract;
 
@@ -21,6 +24,14 @@ namespace TrulliManager
         [UseFiltering]
         [UseSorting]
         public IQueryable<Property> Properties => _propertyRepository.GetAll();
+
+        public async Task<Trullo> GetTrulloById([Service] ITrulloRepository trulloRepository, [Service]ITopicEventSender eventSender, int id)
+        {
+            Trullo trulloResult = trulloRepository.GetTrulloById(id);
+            await eventSender.SendAsync("ReturnedTrullo", trulloResult);
+
+            return trulloResult;
+        }
 
         [UsePaging]
         [UseFiltering]

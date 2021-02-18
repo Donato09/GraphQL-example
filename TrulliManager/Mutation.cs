@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HotChocolate;
+using HotChocolate.Subscriptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +21,7 @@ namespace TrulliManager
             _propertyRepository = propertyRepository;
         }
 
-        public Trullo CreateTrullo(CreateTrulloInput trullo)
+        public async Task<Trullo> CreateTrullo([Service]ITrulloRepository trulloRepository, [Service]ITopicEventSender eventSender, CreateTrulloInput trullo)
         {
             Trullo newTrullo = new Trullo
             {
@@ -31,7 +33,11 @@ namespace TrulliManager
                 PropertyId = trullo.PropertyId
             };
 
-            return _trulloRepository.Create(newTrullo);
+            var createdTrullo = await trulloRepository.Create(newTrullo);
+
+            await eventSender.SendAsync("TrulloCreated", createdTrullo);
+
+            return createdTrullo;
         }
 
         public Trullo DeleteTrullo(DeleteTrulloInput deletedTrullo)

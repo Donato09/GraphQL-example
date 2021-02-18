@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TrulliManager.Database.Models;
 
 namespace TrulliManager.Repository.Abstract
@@ -10,6 +11,7 @@ namespace TrulliManager.Repository.Abstract
     {
         IQueryable<Trullo> GetAll();
         Trullo Delete(Trullo trullo);
-        Trullo Create(Trullo trullo);
+        Trullo GetTrulloById(int id);
+        Task<Trullo> Create(Trullo trullo);
     }
 }

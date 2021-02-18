@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TrulliManager.Database;
 using TrulliManager.Database.CustomException;
 using TrulliManager.Database.Models;
@@ -22,6 +23,16 @@ namespace TrulliManager.Repository.Concrete
             return _db.Trulli.Include(p => p.Property);
         }
 
+        public Trullo GetTrulloById(int id)
+        {
+            var trullo = _db.Trulli
+                .Include(p => p.Property)
+                .Where(t => t.Id == id)
+                .FirstOrDefault();
+            
+            return trullo;
+        }
+
         public Trullo Delete(Trullo trullo)
         {
             var trulloToDelete = GetAll().FirstOrDefault(t => t.Id == trullo.Id);
@@ -34,10 +45,10 @@ namespace TrulliManager.Repository.Concrete
             return trulloToDelete;
         }
 
-        public Trullo Create(Trullo trullo)
+        public async Task<Trullo> Create(Trullo trullo)
         {
-            _db.Add(trullo);
-            _db.SaveChanges();
+           await _db.AddAsync(trullo);
+           await _db.SaveChangesAsync();
 
             return trullo;
         }

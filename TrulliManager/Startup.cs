@@ -33,6 +33,8 @@ namespace TrulliManager
             services.AddTransient<IPropertyRepository, PropertyRepository>();
             services.AddTransient<ITrulloRepository, TrulloRepository>();
 
+            services.AddInMemorySubscriptions();
+
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<ITrulloRepository, TrulloRepository>();
 
@@ -45,8 +47,11 @@ namespace TrulliManager
             services
                 .AddRouting()
                 .AddGraphQLServer()
-                .AddQueryType<QueryType>()
-                .AddMutationType<Mutation>();
+                .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>()
+                .AddFiltering()
+                .AddSorting();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +64,8 @@ namespace TrulliManager
 
             //preload db
             db.EnsureSeedData();
+
+            app.UseWebSockets();
 
             app.UseRouting();
 
